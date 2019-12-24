@@ -22,7 +22,7 @@ static int writer(char* data, size_t size, size_t nmemb, std::string* buffer) {
 }
 
 std::string buffer;
-std::vector<std::string> images;
+std::vector<std::string> websiteData;
 
 void getData() {
 	int httpCode(0);
@@ -53,10 +53,10 @@ void getData() {
 		std::cout << "\nGot successful response from " << url << std::endl;
 
 		while(true) {
-			std::size_t found = buffer.find("bbc");
+			std::size_t found = buffer.find("bbc"); // looks for the class bbc and finds its pos
 			if(found != std::string::npos) {
 
-				images.push_back(buffer.substr(found, 40));
+				websiteData.push_back(buffer.substr(found, 40));
 				buffer.erase(found, 40);
 			}
 			else {
@@ -75,7 +75,7 @@ int main() {
 
 
 
-	for(auto i : images) {
+	for(auto i : websiteData) {
 		std::cout << "\n\nfound\n\n";
 		std::cout << i;
 	}
